@@ -60,12 +60,34 @@ public:
      * return the height of the image
      */
     int GetHeight();
+
+    /*
+     * Function: set the width of the image
+     *
+     * Precondition:
+     * the input width is initialized
+     *
+     * Postcondition:
+     * set the width of the image if it is within 0 and MAX_WIDTH (inclusive)
+     * else throw "Width out of bounds" message for bad values
+     */
     void SetWidth(int width);
+
+    /*
+     * Function: set the height of the image
+     *
+     * Precondition:
+     * the input height is initialized
+     *
+     * Postcondition:
+     * set the height of the image if it is within 0 and MAX_HEIGHT (inclusive)
+     * else throw "Height out of bounds" message for bad values
+     */
     void SetHeight(int height);
 
     // Color functions
     /*
-     * Function: return the red color value of the image
+     * Function: return the red color value of the pen
      *
      * Precondition:
      * None
@@ -76,7 +98,7 @@ public:
     int GetPenRed();
 
     /*
-     * Function: return the green color value of the image
+     * Function: return the green color value of the pen
      *
      * Precondition:
      * None
@@ -87,7 +109,7 @@ public:
     int GetPenGreen();
 
     /*
-     * Function: return the blue color value of the image
+     * Function: return the blue color value of the pen
      *
      * Precondition:
      * None
@@ -96,8 +118,41 @@ public:
      * return the blue color value of the image
      */
     int GetPenBlue();
+
+    /*
+     * Function: set the red color value of the pen
+     *
+     * Precondition:
+     * the input red color value is initialized
+     *
+     * Postcondition:
+     * set the red color value of the pen if the input is within 0 and MAX_COLOR (inclusive)
+     * else throw "Max color range not 255" message for bad values
+     */
     void SetPenRed(int newR);
+
+    /*
+     * Function: set the green color value of the pen
+     *
+     * Precondition:
+     * the input green color value is initialized
+     *
+     * Postcondition:
+     * set the green color value of the pen if the input is within 0 and MAX_COLOR (inclusive)
+     * else throw "Max color range not 255" message for bad values
+     */
     void SetPenGreen(int newG);
+
+    /*
+     * Function: set the blue color value of the pen
+     *
+     * Precondition:
+     * the input blue color value is initialized
+     *
+     * Postcondition:
+     * set the blue color value of the pen if the input is within 0 and MAX_COLOR (inclusive)
+     * else throw "Max color range not 255" message for bad values
+     */
     void SetPenBlue(int newB);
 
     // Drawing methods

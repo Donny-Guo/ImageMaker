@@ -33,43 +33,58 @@ void ImageMaker::SaveImage(string filename) {
 }
 
 int ImageMaker::GetWidth() {
-    return 0;
+    return width;
 }
 
 int ImageMaker::GetHeight() {
-    return 0;
+    return height;
 }
 
 void ImageMaker::SetWidth(int width) {
-
+    if (width < 0 || width > MAX_WIDTH){
+        throw  "Width out of bounds";
+    }
+    this->width = width;
 }
 
 void ImageMaker::SetHeight(int height) {
-
+    if (height < 0 || height > MAX_HEIGHT){
+        throw  "Height out of bounds";
+    }
+    this->height = height;
 }
 
 int ImageMaker::GetPenRed() {
-    return 0;
+    return pen_red;
 }
 
 int ImageMaker::GetPenGreen() {
-    return 0;
+    return pen_green;
 }
 
 int ImageMaker::GetPenBlue() {
-    return 0;
+    return pen_blue;
 }
 
 void ImageMaker::SetPenRed(int newR) {
-
+    if (newR < 0 || newR > MAX_COLOR){
+        throw  "Max color range not 255";
+    }
+    this->pen_red = newR;
 }
 
 void ImageMaker::SetPenGreen(int newG) {
-
+    if (newG < 0 || newG > MAX_COLOR){
+        throw  "Max color range not 255";
+    }
+    this->pen_green = newG;
 }
 
 void ImageMaker::SetPenBlue(int newB) {
-
+    if (newB < 0 || newB > MAX_COLOR){
+        throw  "Max color range not 255";
+    }
+    this->pen_blue = newB;
 }
 
 void ImageMaker::DrawPixel(int x, int y) {
