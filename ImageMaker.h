@@ -21,6 +21,16 @@ using namespace std;
 class ImageMaker
 {
 public:
+    /*
+     * Function: default constructor
+     *
+     * Precondition:
+     * None
+     *
+     * Postcondition:
+     * Set width and height to 0, set initial pen color to (0,0,0)
+     * Set every value in the image variable to 255
+     */
     ImageMaker();
     ImageMaker(string filename);
 
@@ -29,14 +39,62 @@ public:
     void SaveImage(string filename);
 
     // Size functions
+    /*
+     * Function: return the width of the image
+     *
+     * Precondition:
+     * None
+     *
+     * Postcondition:
+     * return the width of the image
+     */
     int GetWidth();
+
+    /*
+     * Function: return the height of the image
+     *
+     * Precondition:
+     * None
+     *
+     * Postcondition:
+     * return the height of the image
+     */
     int GetHeight();
     void SetWidth(int width);
     void SetHeight(int height);
 
     // Color functions
+    /*
+     * Function: return the red color value of the image
+     *
+     * Precondition:
+     * None
+     *
+     * Postcondition:
+     * return the red color value of the image
+     */
     int GetPenRed();
+
+    /*
+     * Function: return the green color value of the image
+     *
+     * Precondition:
+     * None
+     *
+     * Postcondition:
+     * return the green color value of the image
+     */
     int GetPenGreen();
+
+    /*
+     * Function: return the blue color value of the image
+     *
+     * Precondition:
+     * None
+     *
+     * Postcondition:
+     * return the blue color value of the image
+     */
     int GetPenBlue();
     void SetPenRed(int newR);
     void SetPenGreen(int newG);
