@@ -24,7 +24,7 @@ ImageMaker::ImageMaker() {
 
 ImageMaker::ImageMaker(string filename) {
     ImageMaker();
-    this->LoadImage(filename);
+    LoadImage(filename);
 }
 
 void ImageMaker::LoadImage(string filename) {
@@ -56,8 +56,8 @@ void ImageMaker::LoadImage(string filename) {
 
     // read pixel data
     // For each x, y coordinate
-    for (int w = 0; w != GetWidth(); w++){
-        for (int h = 0; h != GetHeight(); h++){
+    for (int h = 0; h != GetWidth(); h++){
+        for (int w = 0; w != GetHeight(); w++){
             int newR, newG, newB;
             // read RGB data
             inFile >> newR >> newG >> newB;
@@ -77,7 +77,32 @@ void ImageMaker::LoadImage(string filename) {
 }
 
 void ImageMaker::SaveImage(string filename) {
+    ofstream outFile;
+    outFile.open(filename);
+    // write magic number to file
+    outFile << "P3\n";
+    // check width and height value
+    if (GetWidth() == 0 || GetHeight() == 0){
+        throw "Image must have non-zero dimensions";
+    }
+    // write width and height to file
+    outFile << GetWidth() << " " << GetHeight() << endl;
+    // write max color value
+    outFile << MAX_COLOR << endl;
+    // write pixel data
+    // For each x, y coordinate
+    for (int h = 0; h != GetWidth(); h++){
+        for (int w = 0; w != GetHeight(); w++){
+            // write the pixel color
+            outFile << image[w][h][0] << " ";
+            outFile << image[w][h][1] << " ";
+            outFile << image[w][h][2] << " ";
+        }
+        outFile << "  " << endl;
+    }
 
+    // finish writing file
+    outFile.close();
 }
 
 int ImageMaker::GetWidth() {

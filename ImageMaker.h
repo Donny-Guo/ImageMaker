@@ -59,7 +59,15 @@ public:
     void LoadImage(string filename);
 
     /*
+     * Function: constructs a ppm image
      *
+     * Precondition:
+     * the input filename is initialized
+     * the ImageMaker object is initialized
+     *
+     * Postcondition:
+     * Create a ppm image based on private variables and filename
+     * Throw "Image must have non-zero dimensions" if width or height is 0
      */
     void SaveImage(string filename);
 
