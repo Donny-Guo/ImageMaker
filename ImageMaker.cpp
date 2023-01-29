@@ -23,7 +23,20 @@ ImageMaker::ImageMaker() {
 }
 
 ImageMaker::ImageMaker(string filename) {
-    ImageMaker();
+    // set private variable to 0
+    width = 0;
+    height = 0;
+    pen_red = 0;
+    pen_green = 0;
+    pen_blue = 0;
+    // Set every value in the image variable to 255
+    for (int w = 0; w != MAX_WIDTH; w++){
+        for (int h = 0; h != MAX_HEIGHT; h++){
+            for (int i = 0; i != 3; i++){
+                image[w][h][i] = 255;
+            }
+        }
+    }
     LoadImage(filename);
 }
 
@@ -56,8 +69,8 @@ void ImageMaker::LoadImage(string filename) {
 
     // read pixel data
     // For each x, y coordinate
-    for (int h = 0; h != GetWidth(); h++){
-        for (int w = 0; w != GetHeight(); w++){
+    for (int h = 0; h != GetHeight(); h++){
+        for (int w = 0; w != GetWidth(); w++){
             int newR, newG, newB;
             // read RGB data
             inFile >> newR >> newG >> newB;
@@ -66,9 +79,9 @@ void ImageMaker::LoadImage(string filename) {
                 throw "Color value invalid";
             }
             // Set the pixel color
-            image[w][h][0] = newR;
-            image[w][h][1] = newG;
-            image[w][h][2] = newB;
+            image[w][h][RED] = newR;
+            image[w][h][GREEN] = newG;
+            image[w][h][BLUE] = newB;
         }
     }
 
@@ -91,8 +104,8 @@ void ImageMaker::SaveImage(string filename) {
     outFile << MAX_COLOR << endl;
     // write pixel data
     // For each x, y coordinate
-    for (int h = 0; h != GetWidth(); h++){
-        for (int w = 0; w != GetHeight(); w++){
+    for (int h = 0; h != GetHeight(); h++){
+        for (int w = 0; w != GetWidth(); w++){
             // write the pixel color
             outFile << image[w][h][0] << " ";
             outFile << image[w][h][1] << " ";
