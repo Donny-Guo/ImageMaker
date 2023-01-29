@@ -1,5 +1,7 @@
 #include "ImageMaker.h"
-
+#include <fstream>
+#include <iostream>
+using namespace std;
 // Your code goes here...
 ImageMaker::ImageMaker() {
     // set private variable to 0
@@ -21,11 +23,57 @@ ImageMaker::ImageMaker() {
 }
 
 ImageMaker::ImageMaker(string filename) {
-
+    ImageMaker();
+    this->LoadImage(filename);
 }
 
 void ImageMaker::LoadImage(string filename) {
+    // open an existing ppm image file
+    ifstream inFile;
+    inFile.open(filename);
+    if (inFile.fail()){
+        throw "File failed to open";
+    }
 
+    // store data into class ImageMaker
+    // read magic string
+    string s;
+    getline(inFile, s);
+    if (s != "P3"){
+        throw "Bad magic number";
+    }
+
+    // read width, height, and max color value
+    int width, height, max_color;
+    inFile >> width >> height >> max_color;
+    // set width, height
+    SetWidth(width);
+    SetHeight(height);
+    // check max_color
+    if (max_color != 255){
+        throw "Max color range not 255";
+    }
+
+    // read pixel data
+    // For each x, y coordinate
+    for (int w = 0; w != GetWidth(); w++){
+        for (int h = 0; h != GetHeight(); h++){
+            int newR, newG, newB;
+            // read RGB data
+            inFile >> newR >> newG >> newB;
+            // check RGB value
+            if (newR < 0 || newR >255 || newG < 0 || newG >255 || newB < 0 || newB >255 ){
+                throw "Color value invalid";
+            }
+            // Set the pixel color
+            image[w][h][0] = newR;
+            image[w][h][1] = newG;
+            image[w][h][2] = newB;
+        }
+    }
+
+    // finish reading file
+    inFile.close();
 }
 
 void ImageMaker::SaveImage(string filename) {
@@ -68,21 +116,21 @@ int ImageMaker::GetPenBlue() {
 
 void ImageMaker::SetPenRed(int newR) {
     if (newR < 0 || newR > MAX_COLOR){
-        throw  "Max color range not 255";
+        throw  "Color value invalid";
     }
     this->pen_red = newR;
 }
 
 void ImageMaker::SetPenGreen(int newG) {
     if (newG < 0 || newG > MAX_COLOR){
-        throw  "Max color range not 255";
+        throw  "Color value invalid";
     }
     this->pen_green = newG;
 }
 
 void ImageMaker::SetPenBlue(int newB) {
     if (newB < 0 || newB > MAX_COLOR){
-        throw  "Max color range not 255";
+        throw  "Color value invalid";
     }
     this->pen_blue = newB;
 }

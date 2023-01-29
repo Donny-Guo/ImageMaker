@@ -32,10 +32,35 @@ public:
      * Set every value in the image variable to 255
      */
     ImageMaker();
+
+    /*
+     * Function: constructor (initialized image with input file)
+     *
+     * Precondition:
+     * input filename is valid
+     *
+     * Postcondition:
+     * initialized an image and set image data based on input file
+     * throw error message if file not open or value invalid
+     */
     ImageMaker(string filename);
 
     // Opens image with filename and stores information into
+    /*
+     * Function: open an existing ppm image file and store data into private variables
+     *
+     * Precondition:
+     * the input filename is valid (can open)
+     *
+     * Postcondition:
+     * store data into img
+     * throw error message when input data out of bound
+     */
     void LoadImage(string filename);
+
+    /*
+     *
+     */
     void SaveImage(string filename);
 
     // Size functions
@@ -127,7 +152,7 @@ public:
      *
      * Postcondition:
      * set the red color value of the pen if the input is within 0 and MAX_COLOR (inclusive)
-     * else throw "Max color range not 255" message for bad values
+     * else throw "Color value invalid" message for bad values
      */
     void SetPenRed(int newR);
 
@@ -139,7 +164,7 @@ public:
      *
      * Postcondition:
      * set the green color value of the pen if the input is within 0 and MAX_COLOR (inclusive)
-     * else throw "Max color range not 255" message for bad values
+     * else throw "Color value invalid" message for bad values
      */
     void SetPenGreen(int newG);
 
@@ -151,7 +176,7 @@ public:
      *
      * Postcondition:
      * set the blue color value of the pen if the input is within 0 and MAX_COLOR (inclusive)
-     * else throw "Max color range not 255" message for bad values
+     * else throw "Color value invalid" message for bad values
      */
     void SetPenBlue(int newB);
 
