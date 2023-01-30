@@ -107,9 +107,9 @@ void ImageMaker::SaveImage(string filename) {
     for (int h = 0; h != GetHeight(); h++){
         for (int w = 0; w != GetWidth(); w++){
             // write the pixel color
-            outFile << image[w][h][0] << " ";
-            outFile << image[w][h][1] << " ";
-            outFile << image[w][h][2] << " ";
+            outFile << image[w][h][RED] << " ";
+            outFile << image[w][h][GREEN] << " ";
+            outFile << image[w][h][BLUE] << " ";
         }
         outFile << "  " << endl;
     }
@@ -174,6 +174,14 @@ void ImageMaker::SetPenBlue(int newB) {
 }
 
 void ImageMaker::DrawPixel(int x, int y) {
+    // check if input x,y are valid coordinate values
+    if (x < 0 || x >= width || y < 0 || y >= height){ // if not valid
+        throw "Point out of bounds"; // throw error message
+    }
+    // draw the pixel
+    image[x][y][RED] = GetPenRed();
+    image[x][y][GREEN] = GetPenGreen();
+    image[x][y][BLUE] = GetPenBlue();
 
 }
 

@@ -190,6 +190,16 @@ public:
 
     // Drawing methods
     // These methods will use the current red, green, blue values of the pen
+    /*
+     * Function: draw a pixel at coordinate (x,y) using current pen color
+     *
+     * Precondition:
+     * ImageMaker object is initialized
+     * The input x,y should be valid (if not, throw "Point out of bounds" error message)
+     *
+     * Postcondition:
+     * draw a pixel on the image at coordinate (x,y) with current pen color
+     */
     void DrawPixel(int x, int y);
     void DrawRectangle(int x1, int y1, int x2, int y2);
     void DrawLine(int x1, int y1, int x2, int y2);
