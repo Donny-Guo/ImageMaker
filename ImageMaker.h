@@ -201,7 +201,23 @@ public:
      * draw a pixel on the image at coordinate (x,y) with current pen color
      */
     void DrawPixel(int x, int y);
+
+    /*
+     *
+     */
     void DrawRectangle(int x1, int y1, int x2, int y2);
+
+    /*
+     * Function:  draws a line between the two points
+     *
+     * Precondition:
+     * ImageMaker object is initialized
+     * The input coordinates x1,y1,x2,y2 are valid (if not,
+     * throw  "Point out of bounds" error message)
+     *
+     * Postcondition:
+     * draws a line between the two points using the current pen color
+     */
     void DrawLine(int x1, int y1, int x2, int y2);
 
 private:
@@ -211,6 +227,19 @@ private:
     int pen_red;    // Used by draw functions
     int pen_green;  // Used by draw functions
     int pen_blue;   // Used by draw functions
+
+    /*
+     * Function: check if input coordinates x and y are in bound
+     *
+     * Precondition:
+     * ImageMaker object is initialized
+     * The input value x and y are initialized
+     *
+     * Postcondition:
+     * Return True if the inputs are in bound
+     * Else Return false
+     *
+     */
     bool PointInBounds(int x, int y);  // Not a bad idea to implement
 
                //   x          y

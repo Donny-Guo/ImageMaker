@@ -175,7 +175,7 @@ void ImageMaker::SetPenBlue(int newB) {
 
 void ImageMaker::DrawPixel(int x, int y) {
     // check if input x,y are valid coordinate values
-    if (x < 0 || x >= width || y < 0 || y >= height){ // if not valid
+    if (!PointInBounds(x,y)){ // if not valid
         throw "Point out of bounds"; // throw error message
     }
     // draw the pixel
@@ -190,9 +190,36 @@ void ImageMaker::DrawRectangle(int x1, int y1, int x2, int y2) {
 }
 
 void ImageMaker::DrawLine(int x1, int y1, int x2, int y2) {
+    // check for input value
+    if (!PointInBounds(x1,y1) || !PointInBounds(x2,y2)){
+        throw "Point out of bounds";
+    }
+    if (x1 == x2 && y2 == y2){
+        DrawPixel(x1,y1);
+        return;
+    } else if (x1 == x2){
+        int y_min = min(y1,y2);
+        int y_max = max(y1,y2);
+        for (int y = y_min; y <= y_max; y++){
+            DrawPixel(x1, y);
+        }
+    } else {
+        // calculate coefficient m and b (y = m*x + b)
+        double m = 1.00 * (y2 - y1) / (x2 - x1);
+        double b = y1 - m * x1;
 
+        int x_min = min(x1, x2);
+        int x_max = max(x1, x2);
+        // drawline
+        for (int x = x_min; x <= x_max; x++) {
+            DrawPixel(x, round(m * x + b));
+        }
+    }
 }
 
 bool ImageMaker::PointInBounds(int x, int y) {
-    return false;
+    if (x < 0 || x >= width || y < 0 || y >= height){
+        return false;
+    }
+    return true;
 }
