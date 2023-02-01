@@ -203,6 +203,16 @@ public:
     void DrawPixel(int x, int y);
 
     /*
+     * Function:
+     * draws a rectangle using current pen color
+     *
+     * Precondition:
+     * The ImageMaker object is initialized
+     * The input coordinates are valid (if not, throw "Point out of bounds"
+     * error message)
+     *
+     * Postcondition:
+     * draws a rectangle based on input coordinates and current pen color
      *
      */
     void DrawRectangle(int x1, int y1, int x2, int y2);

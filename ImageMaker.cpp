@@ -186,6 +186,22 @@ void ImageMaker::DrawPixel(int x, int y) {
 }
 
 void ImageMaker::DrawRectangle(int x1, int y1, int x2, int y2) {
+    // check for input value
+    if (!PointInBounds(x1,y1) || !PointInBounds(x2,y2)){
+        throw "Point out of bounds";
+    }
+
+    // Draw line from (x1,y1) to (x1,y2)
+    DrawLine(x1,y1,x1,y2);
+
+    // Draw line from (x1,y2) to (x2,y2)
+    DrawLine(x1,y2,x2,y2);
+
+    // Draw line from (x2,y2) to (x2,y1)
+    DrawLine(x2,y2,x2,y1);
+
+    // Draw line from (x2,y1) to (x1,y1)
+    DrawLine(x2,y1,x1,y1);
 
 }
 
