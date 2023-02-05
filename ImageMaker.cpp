@@ -3,24 +3,25 @@
 #include <iostream>
 using namespace std;
 // Your code goes here...
-ImageMaker::ImageMaker() {
-    // set private variable to 0
-    width = 0;
-    height = 0;
-    pen_red = 0;
-    pen_green = 0;
-    pen_blue = 0;
-    // Set every value in the image variable to 255
-    for (int w = 0; w != MAX_WIDTH; w++){
-        for (int h = 0; h != MAX_HEIGHT; h++){
-            for (int i = 0; i != 3; i++){
-                image[w][h][i] = 255;
-            }
-        }
-    }
+ImageMaker::ImageMaker():
+    ImageMaker(""){} // Using constructor delegation
+//    // set private variable to 0
+//    width = 0;
+//    height = 0;
+//    pen_red = 0;
+//    pen_green = 0;
+//    pen_blue = 0;
+//    // Set every value in the image variable to 255
+//    for (int w = 0; w != MAX_WIDTH; w++){
+//        for (int h = 0; h != MAX_HEIGHT; h++){
+//            for (int i = 0; i != 3; i++){
+//                image[w][h][i] = 255;
+//            }
+//        }
+//    }
+//
+//    // set string magic to P3 ???
 
-    // set string magic to P3 ???
-}
 
 ImageMaker::ImageMaker(string filename) {
     // set private variable to 0
@@ -29,6 +30,7 @@ ImageMaker::ImageMaker(string filename) {
     pen_red = 0;
     pen_green = 0;
     pen_blue = 0;
+    magic = "P3";
     // Set every value in the image variable to 255
     for (int w = 0; w != MAX_WIDTH; w++){
         for (int h = 0; h != MAX_HEIGHT; h++){
@@ -37,7 +39,9 @@ ImageMaker::ImageMaker(string filename) {
             }
         }
     }
-    LoadImage(filename);
+    if (filename != ""){
+        LoadImage(filename);
+    }
 }
 
 void ImageMaker::LoadImage(string filename) {
